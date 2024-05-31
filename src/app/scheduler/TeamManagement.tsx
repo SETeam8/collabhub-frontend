@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, List, ListItem, ListItemText, ListItemAvatar, Avatar, Typography, IconButton, Tooltip } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
@@ -48,6 +48,9 @@ const TeamManagement: React.FC = () => {
     navigator.clipboard.writeText(teamInfo.teamAccessCode || 'No Code Generated');
   };
 
+  useEffect(() => {
+    generateAccessCode();
+  }, []);
 
   return (
     <Box sx={{
@@ -59,7 +62,7 @@ const TeamManagement: React.FC = () => {
       minHeight: '80vh', 
       width: '100%',
     }}>
-      <Box sx={{ width: '100%', maxWidth: 500, marginBottom: 2 }}>
+      <Box sx={{ width: '100%', maxWidth: 500, marginBottom: 2, marginTop: 5 }}>
         <TeamInfoEdit 
           open={isModalOpen} 
           handleClose={handleCloseModal} 
@@ -94,7 +97,7 @@ const TeamManagement: React.FC = () => {
   border: '1px solid lightgray',
   padding: 2,
   marginBottom: 2,
-  height: '150px', 
+  maxHeigh: '400px', 
   overflowY: 'auto' ,
   borderRadius: '20px' 
 }}>
@@ -135,9 +138,6 @@ const TeamManagement: React.FC = () => {
     </Tooltip>
   </Box>
 </Box>
-<Button onClick={generateAccessCode} variant="outlined" color="primary" sx={{ marginRight: 1 }}>
-      Generate Code
-    </Button>
     </Box>
   );
 };

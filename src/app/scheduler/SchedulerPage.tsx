@@ -4,7 +4,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import NewEventModal from './NewEventModal';
 import NewScheduleModal from './NewScheduleModal';
-
 import './SchedulerPage.css';
 
 interface Event {

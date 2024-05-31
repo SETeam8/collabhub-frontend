@@ -1,18 +1,18 @@
 import React from 'react';
-import TeamManagement from '../src/app/scheduler/TeamManagement';
+import NewTeam from '../src/app/scheduler/NewTeam';
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
 
-const teammanagementpage = () => {
+const NewTeamPage = () => {
   return (
     <>
     <Header />
     <div>
-      <TeamManagement />
+      <NewTeam />
     </div>
     <Footer />
     </>
   );
 }
 
-export default teammanagementpage;
+export default NewTeamPage ;
