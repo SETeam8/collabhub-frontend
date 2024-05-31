@@ -11,6 +11,12 @@ const roboto = Roboto({
 const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
+    h3: {
+      color: '#333333'
+    },
+    button: {
+      color: 'palette.primary.contrastText',
+    },
   },
   palette: {
     primary: {
@@ -24,7 +30,7 @@ const theme = createTheme({
         main: '#8DC63F',
         light: '#a3d165',
         contrastText: '#092412'
-    }
+    },
   }
 });
 
