@@ -21,7 +21,14 @@ const BorderedContainer = styled(Container)(({ theme }) => ({
     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
     height: '60vh',
     overflow: 'scroll',
-    gap: '20px'
+    gap: '20px',
+
+    // 스크롤 바 숨기기
+    scrollbarWidth: 'none', // Firefox
+    msOverflowStyle: 'none',  // IE 10+
+    '&::-webkit-scrollbar': {
+        display: 'none' // Safari and Chrome
+    }
 }));
 
 const MessageContainer = styled(Container)(({ theme }) => ({
@@ -35,27 +42,15 @@ export default function MessagesView({messages}: Props) {
 
     useEffect(() => {
         const container = borderedContainerRef.current;
-
-        const handleScroll = () => {
-            // 스크롤이 가장 아래에 있지 않은 경우에만 스크롤을 아래로 이동
-            if (container && container.scrollTop + container.clientHeight < container.scrollHeight) {
-                container.scrollTop = container.scrollHeight;
-            }
-        };
-
+    
         if (container) {
-            // 처음 컴포넌트가 마운트될 때 스크롤을 아래로 이동
-            container.scrollTop = container.scrollHeight;
-            container.addEventListener('scroll', handleScroll);
+            container.scrollTo({
+                top: container.scrollHeight,
+                behavior: 'smooth',
+            });
         }
-
-        // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거
-        return () => {
-            if (container) {
-                container.removeEventListener('scroll', handleScroll);
-            }
-        };
     }, [messages]);
+    
     
     return (
         <BorderedContainer ref={borderedContainerRef}>
