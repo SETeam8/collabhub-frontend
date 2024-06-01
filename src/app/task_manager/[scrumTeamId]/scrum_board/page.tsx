@@ -35,7 +35,8 @@ export default function ScrumBoardPage({params: {scrumTeamId}}: Props) {
             <div style={{width: '100%', textAlign: 'right'}}>
                 <Button onClick={handleScrumSettingButtonClick} sx={{
                     color: "#999999",
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
+                    fontSize: '12px'
                 }}>Scrum Settings</Button>
             </div>
             <BordredContainer>
@@ -60,7 +61,8 @@ export default function ScrumBoardPage({params: {scrumTeamId}}: Props) {
             <div style={{width: '100%', textAlign: 'right'}}>
                 <Button onClick={handleBacklogButtonClick} sx={{
                     color: "#999999",
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
+                    fontSize: '12px'
                 }}>Go to Product Backlog</Button>
             </div>
         </StyledContainer>
