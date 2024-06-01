@@ -53,7 +53,7 @@ export default function MessageSender({onMessageSend}: Props) {
                 content: message,
                 senderId: 1,    // temp
                 unreadMembersId: members_except_me,
-                lastReadTime: null
+                sendTime: new Date()
             }
             onMessageSend(newMessage);
             setMessage("");

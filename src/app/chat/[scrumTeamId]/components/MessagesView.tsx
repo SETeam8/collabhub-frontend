@@ -23,6 +23,10 @@ const BorderedContainer = styled(Container)(({ theme }) => ({
     overflow: 'scroll',
     gap: '20px',
 
+    paddingBottom: '20px',
+    paddingLeft: 0,
+    paddingRight: 0,
+
     // 스크롤 바 숨기기
     scrollbarWidth: 'none', // Firefox
     msOverflowStyle: 'none',  // IE 10+
@@ -31,9 +35,16 @@ const BorderedContainer = styled(Container)(({ theme }) => ({
     }
 }));
 
-const MessageContainer = styled(Container)(({ theme }) => ({
+const MyMessageContainer = styled(Container)(({ theme }) => ({
     display: 'flex',
-    alignItems: 'left'
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+}));
+
+const MembersMessageContainer = styled(Container)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
 }));
 
 
@@ -56,9 +67,9 @@ export default function MessagesView({messages}: Props) {
         <BorderedContainer ref={borderedContainerRef}>
             {messages.map((message, index) => {
                 if (message.senderId === 1) {   // 임시로 1로 설정
-                    return <MessageContainer key={index}><MyMessageBox message={message}/></MessageContainer>
+                    return <MyMessageContainer key={index}><MyMessageBox message={message}/></MyMessageContainer>
                 } else {
-                    return <MessageContainer key={index}><OthersMessageBox message={message}/></MessageContainer>
+                    return <MembersMessageContainer key={index}><OthersMessageBox message={message}/></MembersMessageContainer>
                 }
             })}
         </BorderedContainer>
