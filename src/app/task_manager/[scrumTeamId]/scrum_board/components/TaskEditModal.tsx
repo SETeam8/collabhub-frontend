@@ -151,11 +151,49 @@ const TaskEditModal: React.FC<Props> = ({ open, handleClose, task, onSave }) => 
                 )}
                 {status > 2 && (
                     // Controller for membersWorkOn
-                    <p>members worked on</p>
+                    <Controller
+                    name="membersWorkOn"
+                    control={control}
+                    render={({ field }) => (
+                        <FormControl variant="outlined" fullWidth>
+                            <InputLabel>Members worked on</InputLabel>
+                            <Select
+                                {...field}
+                                multiple
+                                label="Members worked on"
+                            >
+                                {team_members.map((member, index) => (
+                                    <MenuItem key={index} value={member.id}>
+                                        {member.name} <span className="text-gray">({member.studentId})</span>
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    )}
+                     />
                 )}
                 {status > 2 && (
                     // Controller for reviewers
-                    <p>reviewers</p>
+                    <Controller
+                    name="reviewers"
+                    control={control}
+                    render={({ field }) => (
+                        <FormControl variant="outlined" fullWidth>
+                            <InputLabel>Reviewers</InputLabel>
+                            <Select
+                                {...field}
+                                multiple
+                                label="Reviewers"
+                            >
+                                {team_members.map((member, index) => (
+                                    <MenuItem key={index} value={member.id}>
+                                        {member.name} <span className="text-gray">({member.studentId})</span>
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    )}
+                    />
                 )}
                 {status > 3 && (
                     // Controller for endDate
