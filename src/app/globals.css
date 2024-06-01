@@ -3,6 +3,10 @@ body {
   color: '#333333'
 }
 
+h6 {
+  color: '#333333'
+}
+
 span.text-gray, p.text-gray {
   color:#757575;
 }

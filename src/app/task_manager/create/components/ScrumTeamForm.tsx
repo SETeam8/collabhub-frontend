@@ -90,7 +90,7 @@ export default function ScrumTeamForm({isEdit = false, children}: Props) {
     return (
         <>
         <FormGroup sx={{width: '100%'}}>
-            <Typography variant="h6" sx={{paddingBottom: '20px', paddingTop: '20px'}}>Scrum Options</Typography>
+            <Typography variant="h6" sx={{paddingBottom: '20px', paddingTop: '20px', color: '#333333'}}>Scrum Options</Typography>
             <FormControl fullWidth sx={{paddingBottom: '20px'}} required>
                 <InputLabel id="select-scrum_master">Scrum Master</InputLabel>
                 <Select
@@ -119,7 +119,7 @@ export default function ScrumTeamForm({isEdit = false, children}: Props) {
                     ))}
                 </Select>
             </FormControl>
-            <Typography variant="h6" sx={{paddingBottom: '20px', paddingTop: '20px'}}>Daily Scrum Options</Typography>
+            <Typography variant="h6" sx={{paddingBottom: '20px', paddingTop: '20px', color: '#333333'}}>Daily Scrum Options</Typography>
             <FormControl fullWidth sx={{paddingBottom: '20px'}} required>
                 <InputLabel id="select-scrum_cycle">Scrum Cycle</InputLabel>
                 <Select

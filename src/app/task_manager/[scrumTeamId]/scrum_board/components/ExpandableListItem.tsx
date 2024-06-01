@@ -95,7 +95,7 @@ export default function ExpandableListItem({children, task, isExpanded, onToggle
             >
                 <div style={{width: '100%', textAlign: 'right'}}>
                     <Button onClick={handleEditButtonClick} sx={{color: theme.palette.primary.light, fontSize: '12px', textDecoration: 'underline'}} variant="text">
-                        <EditIcon sx={{width: '12px', height: '12px', color: theme.palette.primary.light, paddingRight: '4px'}}/>
+                        <EditIcon sx={{width: '18px', height: '18px', color: theme.palette.primary.light, paddingRight: '4px'}}/>
                         Edit
                     </Button>
                 </div>
