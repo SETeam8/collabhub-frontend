@@ -3,13 +3,17 @@
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { MessageType } from '../mockups/messages';
+import { useState } from 'react';
+
+interface Props {
+  messages: MessageType[];
+  onSearchResults: (filteredMessages: MessageType[], searchValue: string) => void;
+}
 
 const Search = styled('div')(({ theme }) => ({
     borderRadius: '5px',
     backgroundColor: '#EDEDED',
-    '&:hover': {
-      backgroundColor: '#F5F4F4'
-    },
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
@@ -25,7 +29,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     
-    pointerEvents: 'none',
+    pointerEvents: 'auto',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -45,16 +49,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   }));
 
-export default function SearchBar() {
+export default function SearchBar({messages, onSearchResults}: Props) {
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const handleSearchButtonClick = () => {
+    if (searchValue.trim().length > 0) {
+      const filteredMessages = messages.filter(message =>
+        message.content.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      onSearchResults(filteredMessages, searchValue);
+    } else {
+      onSearchResults(messages, searchValue); // If search value is empty, return all messages
+    }
+  };
+
     return (
         <Search>
-            <StyledInputBase
-              placeholder="Search Messages"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search Messages"
+            inputProps={{ 'aria-label': 'search' }}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <SearchIconWrapper onClick={handleSearchButtonClick}>
+            <SearchIcon />
+          </SearchIconWrapper>
         </Search>
     )
 }

@@ -10,16 +10,22 @@ import { MessageType, message_list } from "./mockups/messages";
 
 export default function ChatMainPage() {
     const [messages, setMessages] = useState<MessageType[]>(message_list);
+    const [searchResults, setSearchResults] = useState<MessageType[]>(message_list);
 
     const handleMessageSend = (newMessage: MessageType) => {
         setMessages(list => list.concat([newMessage]));
     }
 
+    const handleSearchResults = (searchResults: MessageType[], searchValue:string) => {
+        setSearchResults(searchResults);
+        // TODO: searchValue에 해당하는 부분에 하이라이트
+    }
+
     return (
         <StyledFullContainer>
-            <SearchBar />
+            <SearchBar messages={messages} onSearchResults={handleSearchResults}/>
             <MembersStatusView />
-            <MessagesView messages={messages}/>
+            <MessagesView messages={searchResults}/>
             <MessageSender onMessageSend={handleMessageSend}/>
         </StyledFullContainer>
     )
