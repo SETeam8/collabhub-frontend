@@ -39,7 +39,6 @@ export default function TaskList({ selectedTab }:Props) {
 
     const handleTaskChange = (updatedTask: TaskType, originTask: TaskType) => {
         // 기존 리스트에서 originTask의 id에 해당하는 요소 삭제
-        console.log('task changed: ', updatedTask, originTask);
         let taskIdx: number = -1;
         switch (originTask.status) {
             case Status.TODO:

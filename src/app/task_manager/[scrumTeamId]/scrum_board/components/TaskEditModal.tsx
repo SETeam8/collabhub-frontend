@@ -47,10 +47,7 @@ const TaskEditModal: React.FC<Props> = ({ open, handleClose, task, onSave }) => 
     const handleStatusChange = (event: SelectChangeEvent) => {
         setStatus(Number(event.target.value) as Status);
     }
-
-    useEffect(() => {
-        console.log(task, status)
-    }, [status, task])
+    
     return (
         <Modal
             open={open}

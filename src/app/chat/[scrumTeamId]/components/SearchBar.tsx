@@ -4,7 +4,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { MessageType } from '../mockups/messages';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   messages: MessageType[];
@@ -59,7 +59,7 @@ export default function SearchBar({messages, onSearchResults}: Props) {
       );
       onSearchResults(filteredMessages, searchValue);
     } else {
-      onSearchResults(messages, searchValue); // If search value is empty, return all messages
+      onSearchResults([], ""); 
     }
   };
 

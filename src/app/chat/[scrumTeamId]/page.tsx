@@ -10,7 +10,7 @@ import { MessageType, message_list } from "./mockups/messages";
 
 export default function ChatMainPage() {
     const [messages, setMessages] = useState<MessageType[]>(message_list);
-    const [searchResults, setSearchResults] = useState<MessageType[]>(message_list);
+    const [searchResults, setSearchResults] = useState<MessageType[]>([]);
 
     const handleMessageSend = (newMessage: MessageType) => {
         setMessages(list => list.concat([newMessage]));
@@ -25,7 +25,7 @@ export default function ChatMainPage() {
         <StyledFullContainer>
             <SearchBar messages={messages} onSearchResults={handleSearchResults}/>
             <MembersStatusView />
-            <MessagesView messages={searchResults}/>
+            <MessagesView messages={searchResults.length > 0 ? searchResults : messages}/>
             <MessageSender onMessageSend={handleMessageSend}/>
         </StyledFullContainer>
     )
