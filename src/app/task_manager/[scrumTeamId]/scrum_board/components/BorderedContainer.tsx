@@ -16,7 +16,8 @@ export default function BordredContainer({children}: Props) {
                 marginBottom: '20px',
                 border: '0.5px solid #EDEDED',
                 borderRadius: '5px',
-                height: '70vh'
+                height: '70vh',
+                boxShadow: 2
          }}>
             {children}
         </Container>
