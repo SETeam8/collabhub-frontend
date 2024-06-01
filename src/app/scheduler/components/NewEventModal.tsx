@@ -1,51 +1,50 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Modal, TextField } from '@mui/material';
 
-interface NewScheduleModalProps {
+interface NewEventModalProps {
   isOpen: boolean;
   onClose: () => void;
-  addSchedule: (schedule: Schedule) => void;
+  addEvent: (event: Event) => void;
 }
 
-interface Schedule {
+interface Event {
   title: string;
-  participants: string;
   date: string;
-  time: string;
-  place: string;
+  type: string;
+  responsible: string;
 }
 
-const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, addSchedule }) => {
-  const [topic, setTopic] = useState<string>('');
-  const [participants, setParticipants] = useState<string>('');
+const NewEventModal: React.FC<NewEventModalProps> = ({ isOpen, onClose, addEvent }) => {
+  const [name, setName] = useState<string>('');
+  const [type, setType] = useState<string>('');
   const [date, setDate] = useState<string>('');
-  const [time, setTime] = useState<string>('');
-  const [place, setPlace] = useState<string>('');
+  const [responsible, setResponsible] = useState<string>('');
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
     if (!isOpen) {
-      setTopic('');
-      setParticipants('');
+      setName('');
+      setType('');
       setDate('');
-      setTime('');
-      setPlace('');
+      setResponsible('');
       setError('');
     }
   }, [isOpen]);
 
   const handleSubmit = () => {
-    if (!topic || !participants || !date || !time || !place) {
+    if (!name || !type || !date || !responsible) {
       setError('All fields are required');
       return;
     }
-    const newSchedule: Schedule = { title: topic, participants, date, time, place };
-    addSchedule(newSchedule);
+    const newEvent: Event = { title: name, date, type, responsible };
+    addEvent(newEvent);
     onClose(); // 유효할 경우 모달 닫기
   };
 
   return (
-    <Modal open={isOpen} onClose={onClose} aria-labelledby="new-schedule-modal-title" aria-describedby="new-schedule-modal-description">
+    <Modal open={isOpen} onClose={onClose} aria-labelledby="new-event-modal-title" aria-describedby="new-event-modal-description">
       <Box sx={{
         position: 'absolute',
         top: '50%',
@@ -57,22 +56,22 @@ const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, ad
         width: 400,
         maxWidth: '60%'
       }}>
-        <h2 id="new-schedule-modal-title">New Schedule</h2>
+        <h2 id="new-event-modal-title">New Event</h2>
         <TextField
-          label="Topic"
+          label="Event Name"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <TextField
-          label="Participants"
+          label="Event Type"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={participants}
-          onChange={(e) => setParticipants(e.target.value)}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
         />
         <TextField
           label="Date"
@@ -85,22 +84,12 @@ const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, ad
           onChange={(e) => setDate(e.target.value)}
         />
         <TextField
-          label="Time"
-          type="time"
+          label="Responsible Members"
           variant="outlined"
           fullWidth
           margin="normal"
-          InputLabelProps={{ shrink: true }}
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-        />
-        <TextField
-          label="Place"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={place}
-          onChange={(e) => setPlace(e.target.value)}
+          value={responsible}
+          onChange={(e) => setResponsible(e.target.value)}
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
@@ -111,4 +100,4 @@ const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, ad
   );
 };
 
-export default NewScheduleModal;
+export default NewEventModal;

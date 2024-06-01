@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography, IconButton, Tooltip, List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
