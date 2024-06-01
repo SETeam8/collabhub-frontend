@@ -35,7 +35,7 @@ export default function OthersMessageBox({message}: Props) {
                         color: '#092412',
                         padding: '10px',
                         flexGrow: 1,
-                        fontSize: '15px'
+                        fontSize: '13px'
                         
                 }}
                 >
@@ -53,21 +53,21 @@ export default function OthersMessageBox({message}: Props) {
                     textAlign: 'left'
                 }}
             >
-                <Typography fontSize={10}>{
+                <Typography fontSize={8}>{
                     message.sendTime.toLocaleString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                     })
                 }</Typography>
-                <Typography fontSize={10}>{
+                <Typography fontSize={8}>{
                     message.sendTime.toLocaleString('en-US', {
                         hour: 'numeric',
                         minute: 'numeric',
                         hour12: true
                     })
                 }</Typography>
-                {message.unreadMembersId.length > 0 && <Typography fontSize={12}>{message.unreadMembersId.length}</Typography>}
+                {message.unreadMembersId.length > 0 && <Typography fontSize={10}>{message.unreadMembersId.length}</Typography>}
             </Container>
         </Box>
     )

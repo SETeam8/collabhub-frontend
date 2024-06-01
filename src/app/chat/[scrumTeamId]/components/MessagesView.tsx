@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Container } from "@mui/material";
+import { Box, Container, Divider } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { MessageType } from "../mockups/messages";
 import { useEffect, useRef } from "react";
@@ -23,7 +23,7 @@ const BorderedContainer = styled(Container)(({ theme }) => ({
     overflow: 'scroll',
     gap: '20px',
 
-    paddingBottom: '20px',
+    paddingTop: '20px',
     paddingLeft: 0,
     paddingRight: 0,
 
@@ -72,6 +72,11 @@ export default function MessagesView({messages}: Props) {
                     return <MembersMessageContainer key={index}><OthersMessageBox message={message}/></MembersMessageContainer>
                 }
             })}
+            <Divider sx={{
+                width: '100%', 
+                marginBottom: '1px', 
+                backgroundColor: '#8DC63F',
+                boxShadow: '1px 3px 3px #8DC63F, 1px 3px 3px #8DC63F'}} />
         </BorderedContainer>
     )
 }
