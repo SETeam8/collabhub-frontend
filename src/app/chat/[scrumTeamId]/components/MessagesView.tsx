@@ -67,7 +67,9 @@ export default function MessagesView({messages}: Props) {
         <BorderedContainer ref={borderedContainerRef}>
             {messages.map((message, index) => {
                 if (message.senderId === 1) {   // 임시로 1로 설정
-                    return <MyMessageContainer key={index}><MyMessageBox message={message}/></MyMessageContainer>
+                    return <MyMessageContainer key={index}>
+                                <MyMessageBox message={message}/>
+                            </MyMessageContainer>
                 } else {
                     return <MembersMessageContainer key={index}><OthersMessageBox message={message}/></MembersMessageContainer>
                 }

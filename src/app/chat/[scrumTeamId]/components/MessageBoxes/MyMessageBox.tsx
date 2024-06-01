@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Link, Typography } from "@mui/material";
 import { MessageType } from "../../mockups/messages";
 
 interface Props {
@@ -53,6 +53,20 @@ export default function MyMessageBox({message}: Props) {
                 }}
             >
             {message.content}
+            {message.attachedFile && (
+                    <Box sx={{ marginTop: 2 }}>
+                        <Typography variant="body2" color="text.secondary">
+                            Attached file:
+                        </Typography>
+                        <Link
+                            href={URL.createObjectURL(message.attachedFile)}
+                            download={message.attachedFile.name}
+                            sx={{ display: 'block', color: '#757575' }}
+                        >
+                            {message.attachedFile.name}
+                        </Link>
+                    </Box>
+                )}
             </Box>
         </Box>
     )
