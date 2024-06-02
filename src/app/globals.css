@@ -14,3 +14,23 @@ span.text-gray, p.text-gray {
 span.text-lightgray, p.text-lightgray {
   color:#9999;
 }
+}
+
+/* src/styles/global.css */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #cccccc;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+thead th {
+  background-color: #f3f3f3;
+}
