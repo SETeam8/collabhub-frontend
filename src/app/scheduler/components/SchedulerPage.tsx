@@ -1,23 +1,25 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import NewEventModal from './NewEventModal';
 import NewScheduleModal from './NewScheduleModal';
 import './SchedulerPage.css';
+import { Button, Typography } from "@mui/material"
+import { team_members } from '@/common_mockups/team_members';
 
 interface Event {
   title: string;
   date: string;
   type: string;
-  responsible: string;
+  participants: number[];
 }
 
 interface Schedule {
   title: string;
-  participants: string;
+  participants: number[];
   date: string;
   time: string;
   place: string;
@@ -50,11 +52,16 @@ const SchedulerPage: React.FC = () => {
     setSelectedDateSchedules(daySchedules);
   };
 
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD" 형식의 오늘 날짜
+    setSelectedDate(today);
+  }, []);
+
   return (
     <div className="scheduler-container">
       <div className="button-grid">
-        <button className="transparent-button" onClick={() => setIsEventModalOpen(true)}>New Event</button>
-        <button className="transparent-button" onClick={() => setIsScheduleModalOpen(true)}>New Meeting</button>
+        <Button className="transparent-button" variant="outlined" onClick={() => setIsEventModalOpen(true)}>New Event</Button>
+        <Button className="transparent-button" variant="outlined" onClick={() => setIsScheduleModalOpen(true)}>New Meeting</Button>
       </div>
       <div className="calendar-container">
         <FullCalendar
@@ -62,6 +69,7 @@ const SchedulerPage: React.FC = () => {
           initialView="dayGridMonth"
           events={[...events, ...schedules.map(schedule => ({ title: schedule.title, date: schedule.date }))]}
           dateClick={handleDateClick}
+          height={500}
         />
       </div>
       {selectedDate && (
@@ -75,7 +83,13 @@ const SchedulerPage: React.FC = () => {
                   <li key={index}>
                     <strong>Name:</strong> {event.title} <br />
                     <strong>Type:</strong> {event.type} <br />
-                    <strong>Responsible:</strong> {event.responsible}
+                    <strong>Responsible:</strong> 
+                        <Typography>
+                            {event.participants.map((memberId, index) => {
+                                const member = team_members.find(m => m.id === memberId.toString());
+                                return member ? member.name : `Unknown (ID: ${memberId})`;
+                            }).join(', ')}
+                        </Typography>
                   </li>
                 ))}
               </ul>
