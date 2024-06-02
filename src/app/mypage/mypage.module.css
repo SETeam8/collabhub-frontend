@@ -4,20 +4,21 @@
   height: 100vh;
 }
 
-.header {
+.buttonContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 10px;
+  margin:10px 20px;
   background-color: #fff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.backButton, .logoutButton {
+.logoutButton {
   background: none;
   border: none;
   font-size: 16px;
   cursor: pointer;
+  color:#535353;
+  text-decoration: underline;
 }
 
 .main {
@@ -47,6 +48,7 @@
 
 .info {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .infoItem {
@@ -57,12 +59,22 @@
 }
 
 .label {
-  font-weight: bold;
   flex: 1;
+  color:#535353;
+  font-size:0.9em;
 }
 
 .value {
   flex: 2;
+}
+
+.inputField {
+  width: 40%;
+  padding:1px 5px ;
+  margin-right:100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .editButton {
@@ -71,6 +83,13 @@
   font-size: 16px;
   cursor: pointer;
   flex: 0 0 auto;
+  padding:10px 15px 0 0;
+}
+
+.editButtonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .editActions {
@@ -81,16 +100,32 @@
 }
 
 .saveButton, .cancelButton, .toggleButton {
-  background-color: #0070f3;
+  background-color: #278200;
   color: #fff;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 5px 10px; 
+  border-radius: 7px;
   cursor: pointer;
+  transition: background-color 0.3s ease; 
+  font-size: 14px; 
+}
+
+.toggleButton{
+  padding:0px 5px;
+}
+
+.saveButton:hover, .cancelButton:hover, .toggleButton:hover {
+  background-color: #005105;
 }
 
 .cancelButton {
-  background-color: #f44336;
+  color:#278200;
+  background-color: #fff;
+  border:1px solid #278200;
+}
+
+.cancelButton:hover {
+  background-color: #ececec;
 }
 
 .statusActive {
@@ -98,7 +133,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: green;
+
   margin-right: 5px;
 }
 
@@ -107,7 +142,6 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: red;
   margin-right: 5px;
 }
 
@@ -123,22 +157,35 @@
 }
 
 .timeTable {
+  color:#626262;
+  font-size:0.8em;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .dayRow, .hourRow {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width:400px;
 }
 
 .hourLabel, .dayLabel {
-  width: 50px;
   text-align: center;
 }
 
+.hourLabel{
+  text-align: left;
+  width:20px;
+}
+
+.dayLabel{
+  padding-left: 8px;
+}
+
 .hourSlot {
-  width: 20px;
+  width: 25px;
   height: 20px;
   border: 1px solid #ccc;
   margin: 2px;
@@ -146,4 +193,14 @@
 
 .activeSlot {
   background-color: #64b375;
+}
+
+.withdrawButton {
+  background: none;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  color:#535353;
+  text-decoration: underline;
+  margin-top: 50px;
 }

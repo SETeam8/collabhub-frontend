@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import styles from './mypage.module.css';
 import EditIcon from '@mui/icons-material/Edit';
+import StyledContainer from "@/components/StyledContainer";
+import { Switch } from '@mui/material';
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -60,51 +62,21 @@ const Profile = () => {
     setEditedData({ ...editedData, timeTable: newTimeTable });
   };
 
+  const fieldLabels: { [key: string]: string } = {
+    name: 'Name',
+    studentId: 'Student ID',
+    phoneNumber: 'Phone number',
+    email: 'E-mail'
+  };
+
   return (
+    <StyledContainer>
     <div className={styles.container}>
-      <header className={styles.header}>
-        <button className={styles.backButton}>&#x2190;</button>
-        <h1>Profile</h1>
-        <button className={styles.logoutButton}>log out</button>
-      </header>
-      <main className={styles.main}>
-        <div className={styles.profileSection}>
-          <div className={styles.profilePicture}>Profile picture</div>
-          <div className={styles.info}>
-            {['name', 'studentId', 'phoneNumber', 'email'].map((field) => (
-              <div className={styles.infoItem} key={field}>
-                <span className={styles.label}>{field}</span>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    name={field}
-                    value={(editedData as any)[field]}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  <span className={styles.value}>{(profileData as any)[field]}</span>
-                )}
-              </div>
-            ))}
-            <div className={styles.infoItem}>
-              <span className={styles.label}>Status</span>
-              <span className={styles.value}>
-                <span
-                  className={
-                    editedData.status === 'Active'
-                      ? styles.statusActive
-                      : styles.statusInactive
-                  }
-                ></span>
-                {editedData.status}
-              </span>
-              {isEditing && (
-                <button className={styles.toggleButton} onClick={toggleStatus}>
-                  Toggle Status
-                </button>
-              )}
-            </div>
+        <main className={styles.main}>
+          <div className={styles.buttonContainer}>
+            <span className={styles.logoutButton}>log out</span>
           </div>
+          <div className={styles.editButtonWrapper}>
           {isEditing ? (
             <div className={styles.editActions}>
               <button className={styles.saveButton} onClick={handleSave}>
@@ -118,7 +90,57 @@ const Profile = () => {
             <button className={styles.editButton} onClick={handleEditClick}>
               <EditIcon />
             </button>
-          )}
+            )}
+          </div>
+        <div className={styles.profileSection}>
+          <div className={styles.profilePicture}>Profile picture</div>
+          <div className={styles.info}>
+            {['name', 'studentId', 'phoneNumber', 'email'].map((field) => (
+              <div className={styles.infoItem} key={field}>
+                <span className={styles.label}>{fieldLabels[field]}</span>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    name={field}
+                    value={(editedData as any)[field]}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                ) : (
+                  <span className={styles.value}>{(profileData as any)[field]}</span>
+                )}
+              </div>
+            ))}
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Status</span>
+                <span className={styles.value}>
+                  <Switch
+                    checked={editedData.status === 'Active'}
+                    onChange={toggleStatus}
+                    color="primary"
+                    sx={{
+                      margin: -2,
+                      '& .MuiSwitch-switchBase.Mui-checked': {
+                        color: 'green',
+                      },
+                      '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                        backgroundColor: 'lightgreen',
+                      },
+                     }}
+                  />
+                <span
+                  className={
+                    editedData.status === 'Active'
+                      ? styles.statusActive
+                      : styles.statusInactive
+                  }
+                ></span>
+                {editedData.status}
+
+                </span>
+            </div>
+          </div>
+          
         </div>
         <div className={styles.availableTimeSection}>
           <div className={styles.sectionHeader}>
@@ -159,10 +181,13 @@ const Profile = () => {
               </button>
             </div>
           )}
-        </div>
-        <button className={styles.withdrawButton}>withdraw membership</button>
+          </div>
+          <div className={styles.buttonContainer}>
+            <span className={styles.withdrawButton}>withdraw membership</span>
+          </div>
       </main>
-    </div>
+      </div>
+    </StyledContainer>
   );
 };
 
