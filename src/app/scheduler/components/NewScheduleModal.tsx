@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Modal, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from '@mui/material';
+import { team_members } from '@/common_mockups/team_members';
 
 interface NewScheduleModalProps {
   isOpen: boolean;
@@ -11,7 +12,7 @@ interface NewScheduleModalProps {
 
 interface Schedule {
   title: string;
-  participants: string;
+  participants: number[];
   date: string;
   time: string;
   place: string;
@@ -19,7 +20,7 @@ interface Schedule {
 
 const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, addSchedule }) => {
   const [topic, setTopic] = useState<string>('');
-  const [participants, setParticipants] = useState<string>('');
+  const [participants, setParticipants] = useState<number[]>([]);
   const [date, setDate] = useState<string>('');
   const [time, setTime] = useState<string>('');
   const [place, setPlace] = useState<string>('');
@@ -28,7 +29,7 @@ const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, ad
   useEffect(() => {
     if (!isOpen) {
       setTopic('');
-      setParticipants('');
+      setParticipants([]);
       setDate('');
       setTime('');
       setPlace('');
@@ -44,6 +45,10 @@ const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, ad
     const newSchedule: Schedule = { title: topic, participants, date, time, place };
     addSchedule(newSchedule);
     onClose(); // 유효할 경우 모달 닫기
+  };
+
+  const handleParticipantsChange = (event: any) => {
+    setParticipants(event.target.value as number[]);
   };
 
   return (
@@ -68,14 +73,21 @@ const NewScheduleModal: React.FC<NewScheduleModalProps> = ({ isOpen, onClose, ad
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
         />
-        <TextField
-          label="Participants"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={participants}
-          onChange={(e) => setParticipants(e.target.value)}
-        />
+        <FormControl variant="outlined" fullWidth>
+            <InputLabel>Responsible Members</InputLabel>
+            <Select
+                multiple
+                label="Responsible Members"
+                value={participants}
+                onChange={(event) => handleParticipantsChange(event)}
+            >
+                {team_members.map((member, index) => (
+                    <MenuItem key={index} value={member.id}>
+                        {member.name} <span className="text-gray">({member.studentId})</span>
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
         <TextField
           label="Date"
           type="date"

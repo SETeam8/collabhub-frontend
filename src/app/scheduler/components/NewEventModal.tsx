@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Modal, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from '@mui/material';
+import { team_members } from '@/common_mockups/team_members';
 
 interface NewEventModalProps {
   isOpen: boolean;
@@ -13,14 +14,14 @@ interface Event {
   title: string;
   date: string;
   type: string;
-  responsible: string;
+  participants: number[];
 }
 
 const NewEventModal: React.FC<NewEventModalProps> = ({ isOpen, onClose, addEvent }) => {
   const [name, setName] = useState<string>('');
   const [type, setType] = useState<string>('');
   const [date, setDate] = useState<string>('');
-  const [responsible, setResponsible] = useState<string>('');
+  const [participants, setParticipants] = useState<number[]>([]);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
@@ -28,19 +29,23 @@ const NewEventModal: React.FC<NewEventModalProps> = ({ isOpen, onClose, addEvent
       setName('');
       setType('');
       setDate('');
-      setResponsible('');
+      setParticipants([]);
       setError('');
     }
   }, [isOpen]);
 
   const handleSubmit = () => {
-    if (!name || !type || !date || !responsible) {
+    if (!name || !type || !date || !(participants.length > 0)) {
       setError('All fields are required');
       return;
     }
-    const newEvent: Event = { title: name, date, type, responsible };
+    const newEvent: Event = { title: name, date, type, participants };
     addEvent(newEvent);
     onClose(); // 유효할 경우 모달 닫기
+  };
+
+  const handleParticipantsChange = (event: any) => {
+    setParticipants(event.target.value as number[]);
   };
 
   return (
@@ -83,14 +88,21 @@ const NewEventModal: React.FC<NewEventModalProps> = ({ isOpen, onClose, addEvent
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-        <TextField
-          label="Responsible Members"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={responsible}
-          onChange={(e) => setResponsible(e.target.value)}
-        />
+         <FormControl variant="outlined" fullWidth>
+            <InputLabel>Responsible Members</InputLabel>
+            <Select
+                multiple
+                label="Responsible Members"
+                value={participants}
+                onChange={(event) => handleParticipantsChange(event)}
+            >
+                {team_members.map((member, index) => (
+                    <MenuItem key={index} value={member.id}>
+                        {member.name} <span className="text-gray">({member.studentId})</span>
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
           <Button onClick={handleSubmit} color="primary" variant="contained">Save</Button>

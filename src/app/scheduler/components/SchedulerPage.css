@@ -29,15 +29,34 @@
   
   .fc .fc-toolbar-title {
     font-size: 1.3em;
+    color: #092412
 
   }
-  
+
+  .fc .fc-button-primary {
+    color: #FFFFFF;
+    background-color: #0E341B !important;
+    border-color: #F2F2F2 !important; 
+  }
+
   .fc .fc-button.fc-today-button {
     padding: 2px 5px; 
     font-size: 0.8em; 
-    background-color: #ffffff;
-    color: black;
+    background-color: #ffffff !important;
+    color: #757575;
+    border-color: #757575 !important;
+  }
 
+  .fc-day-today {
+    background-color: #ECF5EF !important;
+  }
+  
+  .fc-event-main {
+    background-color: #8DC63F !important;
+  }
+
+  .fc-daygrid-block-event {
+    border: none;
   }
   
   .details-container {
