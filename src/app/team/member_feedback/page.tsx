@@ -20,7 +20,7 @@ const MemberFeedBack = () => {
   const [expanded, setExpanded] = useState(false);
   const [expandedMember, setExpandedMember] = useState(null);
 
-  const handleExpandClick = (member) => {
+  const handleExpandClick = (member:any) => {
     setExpanded(!expanded);
     setExpandedMember(member === expandedMember ? null : member);
   };

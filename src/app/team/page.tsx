@@ -44,7 +44,7 @@ const Team = () => {
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box display="flex" alignItems="center">
             <Chat />
-            <Typography variant="body1" marginLeft={1}>Team 8's Chat room</Typography>
+            <Typography variant="body1" marginLeft={1}>Team 8&apos;s Chat room</Typography>
           </Box>
           <Typography variant="h6">8</Typography>
         </Box>
