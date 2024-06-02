@@ -122,20 +122,28 @@
   margin-bottom: 10px;
 }
 
-.availableTimeTable {
-  background-color: #e0e0e0;
-  height: 150px;
+.timeTable {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border-radius: 5px;
+  flex-direction: column;
 }
 
-.withdrawButton {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-  align-self: center;
+.dayRow, .hourRow {
+  display: flex;
+  align-items: center;
+}
+
+.hourLabel, .dayLabel {
+  width: 50px;
+  text-align: center;
+}
+
+.hourSlot {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  margin: 2px;
+}
+
+.activeSlot {
+  background-color: #64b375;
 }

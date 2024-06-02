@@ -6,12 +6,14 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditingTimeTable, setIsEditingTimeTable] = useState(false);
   const [profileData, setProfileData] = useState({
     name: '김철수',
     studentId: '2024311111',
     phoneNumber: '010-1234-5678',
     email: 'abcd@gmail.com',
     status: 'Active',
+    timeTable: Array(24).fill(Array(7).fill(false)), // 24 hours, 7 days each
   });
   const [editedData, setEditedData] = useState(profileData);
 
@@ -27,18 +29,35 @@ const Profile = () => {
   const handleSave = () => {
     setProfileData(editedData);
     setIsEditing(false);
+    setIsEditingTimeTable(false);
   };
 
   const handleCancel = () => {
     setEditedData(profileData);
     setIsEditing(false);
+    setIsEditingTimeTable(false);
   };
 
   const toggleStatus = () => {
     setEditedData((prevState) => ({
       ...prevState,
-      status: prevState.status === 'Active' ? 'Not Active' : 'Active',
+      status: prevState.status === 'Active' ? 'Not active' : 'Active',
     }));
+  };
+
+  const handleTimeSlotClick = (hour: number, day: number) => {
+    const newTimeTable = editedData.timeTable.map((daySlots, hourIndex) => {
+      if (hourIndex === hour) {
+        return daySlots.map((slot, dayIndex) => {
+          if (dayIndex === day) {
+            return !slot;
+          }
+          return slot;
+        });
+      }
+      return daySlots;
+    });
+    setEditedData({ ...editedData, timeTable: newTimeTable });
   };
 
   return (
@@ -81,7 +100,7 @@ const Profile = () => {
               </span>
               {isEditing && (
                 <button className={styles.toggleButton} onClick={toggleStatus}>
-                  Change Status
+                  Toggle Status
                 </button>
               )}
             </div>
@@ -104,11 +123,42 @@ const Profile = () => {
         <div className={styles.availableTimeSection}>
           <div className={styles.sectionHeader}>
             <span>Available time</span>
-            <button className={styles.editButton}>
+            <button className={styles.editButton} onClick={() => setIsEditingTimeTable(true)}>
               <EditIcon />
             </button>
           </div>
-          <div className={styles.availableTimeTable}>Available time table</div>
+          <div className={styles.timeTable}>
+            <div className={styles.dayRow}>
+              <div className={styles.dayLabel}></div>
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, dayIndex) => (
+                <div key={day} className={styles.dayLabel}>
+                  {day}
+                </div>
+              ))}
+            </div>
+            {Array.from({ length: 24 }, (_, hour) => (
+              <div key={hour} className={styles.hourRow}>
+                <div className={styles.hourLabel}>{hour}</div>
+                {editedData.timeTable[hour].map((slot, dayIndex) => (
+                  <div
+                    key={dayIndex}
+                    className={`${styles.hourSlot} ${slot ? styles.activeSlot : ''}`}
+                    onClick={() => isEditingTimeTable && handleTimeSlotClick(hour, dayIndex)}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+          {isEditingTimeTable && (
+            <div className={styles.editActions}>
+              <button className={styles.saveButton} onClick={handleSave}>
+                Save
+              </button>
+              <button className={styles.cancelButton} onClick={handleCancel}>
+                Cancel
+              </button>
+            </div>
+          )}
         </div>
         <button className={styles.withdrawButton}>withdraw membership</button>
       </main>
