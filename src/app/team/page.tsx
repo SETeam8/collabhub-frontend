@@ -1,52 +1,136 @@
+"use client";
+
 import React from 'react';
-import { Box, Typography, Paper, List, ListItem, ListItemText, BottomNavigation, BottomNavigationAction } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import GroupsIcon from '@mui/icons-material/Groups';
-import PersonIcon from '@mui/icons-material/Person';
+import { Box, Typography, Paper, List, ListItem, ListItemText, Divider, Button, IconButton } from '@mui/material';
+import { Chat, ExitToApp, Home, People, Person } from '@mui/icons-material';
+import styled from '@emotion/styled';
 
-const Main = () => {
+const Container = styled(Box)({
+  padding: '16px',
+  backgroundColor: '#f5f5f5',
+  minHeight: '100vh'
+});
+
+const Section = styled(Paper)({
+  marginBottom: '16px',
+  padding: '16px'
+});
+
+
+const Team = () => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <Container>
+      <Section>
+        <Box display="flex" justifyContent="flex-end" marginBottom="16px">
+          <Button variant="outlined">Team Management</Button>
+        </Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
+          <Typography variant="subtitle1" gutterBottom color="textSecondary">
+            Subject
+          </Typography>
+          <Typography variant="body1">Introduction to Software Engineering</Typography>
+        </Box>
 
-      {/* Welcome greeting */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-        <Paper elevation={3} sx={{ p: 2 }}>
-          <Typography variant="h5">Welcome greeting</Typography>
-          <Typography>Manage your team project efficiently</Typography>
-        </Paper>
-      </Box>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="subtitle1" gutterBottom color="textSecondary">
+            Description
+          </Typography>
+          <Typography variant="body2">This part is description of the team.</Typography>
+        </Box>
+      </Section>
 
-      {/* Major Schedule */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-        <Paper elevation={3} sx={{ p: 2 }}>
-          <Typography variant="h5">Major Schedule</Typography>
-          <List>
-            <ListItem>
-              <ListItemText primary="SRS document submission" secondary="Due date: 2024.05.26" />
-              <Typography color="error">D-day</Typography>
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Final Presentation" secondary="Due date: 2024.06.13" />
-              <Typography color="textSecondary">D-17</Typography>
-            </ListItem>
-          </List>
-        </Paper>
-      </Box>
-
-      <Box sx={{ p: 2, flexGrow: 1, borderBottom: 1, borderColor: 'divider' }}>
-        <Paper elevation={3} sx={{ p: 2 }}>
-          <Typography variant="h5">Teams Overview</Typography>
-          <Box sx={{ mt: 2 }}>
-            <Paper elevation={1} sx={{ p: 2, borderLeft: 5, borderColor: 'primary.main' }}>
-              <Typography variant="h6">Team 8</Typography>
-              <Typography>Introduction to Software Engineering_차수영</Typography>
-              <Typography variant="caption">2024년 1학기</Typography>
-            </Paper>
+      <Section>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Box display="flex" alignItems="center">
+            <Chat />
+            <Typography variant="body1" marginLeft={1}>Team 8's Chat room</Typography>
           </Box>
-        </Paper>
-      </Box>
-    </Box>
+          <Typography variant="h6">8</Typography>
+        </Box>
+        <Typography variant="body2">Lastest message content...</Typography>
+      </Section>
+
+      <Section>
+        <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
+          <Typography variant="h6">Upcoming events</Typography>
+          <IconButton color="primary">
+            <ExitToApp />
+          </IconButton>
+        </Box>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary="SRS document submission"
+              secondary="Due date: 2024.05.26"
+            />
+            <Typography variant="body2" color="error">
+              D-day
+            </Typography>
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Final Presentation"
+              secondary="Due date: 2024.06.13"
+            />
+            <Typography variant="body2" color="textSecondary">
+              D-17
+            </Typography>
+          </ListItem>
+        </List>
+      </Section>
+
+      <Section>
+        <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
+          <Typography variant="h6">Scheduled meeting</Typography>
+          <IconButton color="primary">
+            <ExitToApp />
+          </IconButton>
+        </Box>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary="Final Presentation"
+              secondary="Due date: 2024.06.13"
+            />
+            <Typography variant="body2" color="textSecondary">
+              D-17
+            </Typography>
+          </ListItem>
+        </List>
+      </Section>
+
+      <Section>
+        <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
+          <Typography variant="h6">My todos</Typography>
+          <IconButton color="primary">
+            <ExitToApp />
+          </IconButton>
+        </Box>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary="SRS document writing"
+              secondary="Due date: 2024.05.26"
+            />
+            <Typography variant="body2" color="success">
+              Done
+            </Typography>
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Task Manager implementation"
+              secondary="Due date: 2024.06.13"
+            />
+            <Typography variant="body2" color="primary">
+              In progress
+            </Typography>
+          </ListItem>
+        </List>
+      </Section>
+
+
+    </Container>
   );
 };
 
-export default Main;
+export default Team;
