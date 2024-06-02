@@ -1,6 +1,7 @@
 'use client';
 import styles from './teams.module.css';
 import { useRouter } from 'next/navigation';
+import StyledContainer from "@/components/StyledContainer";
 
 const Teams = () => {
 
@@ -21,13 +22,12 @@ const Teams = () => {
   };
 
   return (
-    <div>
+    <StyledContainer>
+    <div className={styles.container}>
       <div className={styles.teamsHeader}>
-        <button onClick={goBack} className={styles.button}>&#x2190;</button>
-        <h1 className={styles.title}>Teams</h1>
         <button onClick={addTeam} className={styles.button}>+</button>
       </div>
-      <h2 className={styles.subtitle}>Your Teams</h2>
+      <div className={styles.subtitle}>Your Teams</div>
       <div className={styles.teamList}>
         {teams.map((team, index) => (
           <div key={index} className={styles.teamCard}>
@@ -35,7 +35,8 @@ const Teams = () => {
           </div>
         ))}
       </div>
-    </div>
+      </div>
+      </StyledContainer>
   );
 };
 
