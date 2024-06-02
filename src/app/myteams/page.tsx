@@ -1,7 +1,10 @@
-'use client'
+'use client';
 import styles from './teams.module.css';
+import { useRouter } from 'next/navigation';
 
 const Teams = () => {
+
+  const router = useRouter();
   
   const goBack = () => {
     // Implement go back functionality
@@ -11,6 +14,11 @@ const Teams = () => {
   };
 
   const teams = ['SWE', 'AI', 'CG']
+
+  teams.map((team, index) => {
+    router.push(`/teams/${team}`);
+  });
+
 
   return (
     <div>
