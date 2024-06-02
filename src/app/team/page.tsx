@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { Box, Typography, Paper, List, ListItem, ListItemText, Divider, Button, IconButton } from '@mui/material';
@@ -8,7 +8,8 @@ import styled from '@emotion/styled';
 const Container = styled(Box)({
   padding: '16px',
   backgroundColor: '#f5f5f5',
-  minHeight: '100vh'
+  minHeight: '100vh',
+  marginBottom: '60px'
 });
 
 const Section = styled(Paper)({
@@ -127,7 +128,15 @@ const Team = () => {
           </ListItem>
         </List>
       </Section>
+      <Section>
+        <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
+          <Typography variant="h6">Team Management</Typography>
 
+        </Box>
+        <Box display="flex" justifyContent="flex-end" marginTop="8px">
+          <Button variant="contained" color="primary">Go to Team Management</Button>
+        </Box>
+      </Section>
 
     </Container>
   );
