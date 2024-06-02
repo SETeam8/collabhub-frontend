@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -51,6 +51,11 @@ const SchedulerPage: React.FC = () => {
     setSelectedDateEvents(dayEvents);
     setSelectedDateSchedules(daySchedules);
   };
+
+  useEffect(() => {
+    const today = new Date().toISOString().split('T')[0]; // "YYYY-MM-DD" 형식의 오늘 날짜
+    setSelectedDate(today);
+  }, []);
 
   return (
     <div className="scheduler-container">
