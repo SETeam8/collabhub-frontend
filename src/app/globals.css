@@ -1,3 +1,16 @@
 body {
   margin: 0px;
+  color: '#333333'
+}
+
+h6 {
+  color: '#333333'
+}
+
+span.text-gray, p.text-gray {
+  color:#757575;
+}
+
+span.text-lightgray, p.text-lightgray {
+  color:#9999;
 }
