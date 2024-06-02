@@ -7,6 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import NewEventModal from './NewEventModal';
 import NewScheduleModal from './NewScheduleModal';
 import './SchedulerPage.css';
+import { Button } from "@mui/material"
 
 interface Event {
   title: string;
@@ -53,8 +54,8 @@ const SchedulerPage: React.FC = () => {
   return (
     <div className="scheduler-container">
       <div className="button-grid">
-        <button className="transparent-button" onClick={() => setIsEventModalOpen(true)}>New Event</button>
-        <button className="transparent-button" onClick={() => setIsScheduleModalOpen(true)}>New Meeting</button>
+        <Button className="transparent-button" variant="outlined" onClick={() => setIsEventModalOpen(true)}>New Event</Button>
+        <Button className="transparent-button" variant="outlined" onClick={() => setIsScheduleModalOpen(true)}>New Meeting</Button>
       </div>
       <div className="calendar-container">
         <FullCalendar
@@ -62,6 +63,7 @@ const SchedulerPage: React.FC = () => {
           initialView="dayGridMonth"
           events={[...events, ...schedules.map(schedule => ({ title: schedule.title, date: schedule.date }))]}
           dateClick={handleDateClick}
+          height={500}
         />
       </div>
       {selectedDate && (
