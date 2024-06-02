@@ -111,7 +111,7 @@ const NewTeam: React.FC = () => {
           </Tooltip>
         </Box>
       </Box>
-      <Button variant="outlined" color="primary" sx={{ marginRight: 1, marginTop:30, color: 'black' , fontSize: 15 }}>
+      <Button variant="outlined" color="primary" sx={{ marginRight: 5, marginTop:5, color: 'black' , fontSize: 15 }}>
         Go to the main page of the team
       </Button>
     </Box>

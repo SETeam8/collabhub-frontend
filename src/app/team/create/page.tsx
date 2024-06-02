@@ -1,13 +1,14 @@
 import React from 'react';
 import NewTeam from './components/NewTeam';
+import StyledContainer from "@/components/StyledContainer";
 
 const NewTeamPage = () => {
   return (
-    <>
-    <div>
-      <NewTeam />
-    </div>
-    </>
+    <StyledContainer>
+      <div>
+        <NewTeam />
+      </div>
+    </StyledContainer>
   );
 }
 
