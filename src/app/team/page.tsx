@@ -6,6 +6,7 @@ import { Chat, ExitToApp, Home, People, Person } from '@mui/icons-material';
 import styled from '@emotion/styled';
 import StyledContainer from '@/components/StyledContainer';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useRouter } from 'next/navigation';
 
 const Container = styled(Box)({
   padding: '16px',
@@ -22,11 +23,15 @@ const Section = styled(Paper)({
 
 
 const Team = () => {
+  const router = useRouter();
+
   return (
     <StyledContainer>
       <Section>
         <Box display="flex" justifyContent="flex-end" marginBottom="16px">
-          <IconButton sx={{width: '30px', height: '30px'}}><SettingsIcon/></IconButton>
+          <IconButton sx={{width: '30px', height: '30px'}} onClick={() => {router.push('/team/1/management')}}>
+            <SettingsIcon/>
+          </IconButton>
         </Box>
         <Box display="flex" justifyContent="left" alignItems="top" marginBottom="8px">
           <Typography variant="subtitle1" gutterBottom color="textSecondary" width={'35%'}>
@@ -45,7 +50,7 @@ const Team = () => {
         </Box>
       </Section>
 
-      <Section>
+      <Section onClick={() => {router.push('/chat/1')}}>   {/* teamID는 임시로 1로 설정 */}
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box display="flex" alignItems="center">
             <Chat />
@@ -59,7 +64,7 @@ const Team = () => {
       <Section>
         <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
           <Typography variant="h6">Upcoming events</Typography>
-          <IconButton color="primary">
+          <IconButton color="primary" onClick={() => {router.push('/scheduler')}}>
             <ExitToApp />
           </IconButton>
         </Box>
@@ -88,18 +93,18 @@ const Team = () => {
       <Section>
         <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
           <Typography variant="h6">Scheduled meeting</Typography>
-          <IconButton color="primary">
+          <IconButton color="primary" onClick={() => {router.push('/scheduler')}}>
             <ExitToApp />
           </IconButton>
         </Box>
         <List>
           <ListItem>
             <ListItemText
-              primary="Final Presentation"
-              secondary="Due date: 2024.06.13"
+              primary="About Making Final Presentation"
+              secondary="Due date: 2024.06.03"
             />
             <Typography variant="body2" color="textSecondary">
-              D-17
+              D-1
             </Typography>
           </ListItem>
         </List>
@@ -108,7 +113,7 @@ const Team = () => {
       <Section>
         <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
           <Typography variant="h6">My todos</Typography>
-          <IconButton color="primary">
+          <IconButton color="primary" onClick={() => {router.push('/task_manager')}}>
             <ExitToApp />
           </IconButton>
         </Box>
@@ -139,7 +144,9 @@ const Team = () => {
 
         </Box>
         <Box display="flex" justifyContent="flex-end" marginTop="8px">
-          <Button variant="contained" color="primary" fullWidth>Go to Member Feedback page</Button>
+          <Button variant="contained" color="primary" fullWidth onClick={() => {router.push('/team/member_feedback')}}>
+            Go to Member Feedback page
+          </Button>
         </Box>
       </Section>
 
