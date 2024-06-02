@@ -77,16 +77,16 @@ const TeamManagement: React.FC = () => {
             <EditIcon />
           </IconButton>
         </Tooltip></Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between',marginBottom: 2, paddingInlineEnd: 5}}>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between',marginBottom: 4, paddingInlineEnd: 5}}>
           Team Name <Typography component="span" sx={{ color: 'black'}}>{teamInfo.teamName}</Typography>
         </Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 2,  paddingInlineEnd: 5}}>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 4,  paddingInlineEnd: 5}}>
           Subject <Typography component="span" sx={{ color: 'black', }}>{teamInfo.subject}</Typography>
         </Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 2, paddingInlineEnd: 5 }}>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 4, paddingInlineEnd: 5 }}>
           Description <Typography component="span" sx={{ color: 'black' }}>{teamInfo.description}</Typography>
         </Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 2, paddingInlineEnd: 5 }}>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 4, paddingInlineEnd: 5 }}>
           Limited Number of Members 
           <Typography component="span" sx={{ color: 'black' }}>{teamInfo.membersLimit}</Typography>
         </Typography>
