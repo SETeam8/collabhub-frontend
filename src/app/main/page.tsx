@@ -1,23 +1,30 @@
+"use client"
+
 import React from 'react';
-import { Box, Typography, Paper, List, ListItem, ListItemText, BottomNavigation, BottomNavigationAction } from '@mui/material';
+import { Box, Typography, Paper, List, ListItem, ListItemText, BottomNavigation, BottomNavigationAction, IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
+import StyledContainer from '@/components/StyledContainer';
+import { ExitToApp } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
 
 const Main = () => {
+  const router = useRouter();
+  
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <StyledContainer>
 
       {/* Welcome greeting */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ paddingBottom: 2, marginBottom: 2, borderBottom: 1, borderColor: 'divider', width: '100%' }}>
         <Paper elevation={3} sx={{ p: 2 }}>
-          <Typography variant="h5">Welcome greeting</Typography>
-          <Typography>Manage your team project efficiently</Typography>
+          <Typography variant="h5" sx={{lineHeight: '50px'}}>Greetings!</Typography>
+          <Typography>Enhance your team projects with our all-in-one collaboration tool.</Typography>
         </Paper>
       </Box>
 
       {/* Major Schedule */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ paddingBottom: 2, borderBottom: 1, borderColor: 'divider', width: '100%' }}>
         <Paper elevation={3} sx={{ p: 2 }}>
           <Typography variant="h5">Major Schedule</Typography>
           <List>
@@ -33,9 +40,15 @@ const Main = () => {
         </Paper>
       </Box>
 
-      <Box sx={{ p: 2, flexGrow: 1, borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ flexGrow: 1, borderBottom: 1, borderColor: 'divider', width: '100%' }}>
         <Paper elevation={3} sx={{ p: 2 }}>
-          <Typography variant="h5">Teams Overview</Typography>
+          <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
+            <Typography variant="h5">Your Teams</Typography>
+            <IconButton color="primary" onClick={() => {router.push('/teams')}}>
+              <ExitToApp />
+            </IconButton>
+          </Box>
+        
           <Box sx={{ mt: 2 }}>
             <Paper elevation={1} sx={{ p: 2, borderLeft: 5, borderColor: 'primary.main' }}>
               <Typography variant="h6">Team 8</Typography>
@@ -45,7 +58,7 @@ const Main = () => {
           </Box>
         </Paper>
       </Box>
-    </Box>
+    </StyledContainer>
   );
 };
 
