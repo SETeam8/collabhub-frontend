@@ -64,7 +64,7 @@ const TeamManagement: React.FC = () => {
       minHeight: '80vh', 
       width: '100%',
     }}>
-      <Box sx={{ width: '100%', maxWidth: 500, marginBottom: 2, marginTop: 5 }}>
+      <Box sx={{ width: '100%', maxWidth: 500, marginBottom: 2 }}>
         <TeamInfoEdit 
           open={isModalOpen} 
           handleClose={handleCloseModal} 
@@ -73,20 +73,23 @@ const TeamManagement: React.FC = () => {
         />
         <Typography variant="h6" sx={{ color: 'black', marginBottom: 1 , display: 'flex', justifyContent: 'space-between', fontWeight: 'bold'}}>Team Info.
         <Tooltip title="Edit Team Info">
-          <IconButton onClick={handleOpenModal} color="primary" sx={{ marginBottom: 2 , marginRight: 5}}>
+          <IconButton onClick={handleOpenModal} color="primary" sx={{ marginBottom: 2 , marginRight: 1}}>
             <EditIcon />
           </IconButton>
         </Tooltip></Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between',marginBottom: 4, paddingInlineEnd: 5}}>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between',marginBottom: 2, paddingInlineEnd: 2}}>
           Team Name <Typography component="span" sx={{ color: 'black'}}>{teamInfo.teamName}</Typography>
         </Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 4,  paddingInlineEnd: 5}}>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 2,  paddingInlineEnd: 2}}>
           Subject <Typography component="span" sx={{ color: 'black', }}>{teamInfo.subject}</Typography>
         </Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 4, paddingInlineEnd: 5 }}>
-          Description <Typography component="span" sx={{ color: 'black' }}>{teamInfo.description}</Typography>
-        </Typography>
-        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 4, paddingInlineEnd: 5 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+          <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 2, paddingInlineEnd: 5 }}>Description</Typography>
+          <Typography component="span" sx={{ color: 'black', whiteSpace: 'pre-line', wordBreak: 'break-word', lineHeight: '1.5', maxWidth:200 }}>
+            {teamInfo.description}
+          </Typography>
+        </Box>
+        <Typography sx={{ color: 'gray', display: 'flex', justifyContent: 'space-between', marginBottom: 2, paddingInlineEnd: 2 }}>
           Limited Number of Members 
           <Typography component="span" sx={{ color: 'black' }}>{teamInfo.membersLimit}</Typography>
         </Typography>
