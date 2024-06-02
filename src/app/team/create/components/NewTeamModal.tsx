@@ -96,8 +96,8 @@ const NewTeamModal: React.FC<NewTeamModalProps> = ({ open, handleClose, handleSa
           onChange={(e) => setMembersLimit(parseInt(e.target.value, 10))}
         />
 
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-          <Button onClick={save} color="primary" variant="contained">Submit</Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <Button onClick={save} color="primary" variant="outlined">Submit</Button>
         </Box>
       </Box>
     </Modal>

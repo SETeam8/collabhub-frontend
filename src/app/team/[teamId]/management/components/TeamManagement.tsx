@@ -73,7 +73,7 @@ const TeamManagement: React.FC = () => {
         />
         <Typography variant="h6" sx={{ color: 'black', marginBottom: 1 , display: 'flex', justifyContent: 'space-between', fontWeight: 'bold'}}>Team Info.
         <Tooltip title="Edit Team Info">
-          <IconButton onClick={handleOpenModal} color="primary" sx={{ marginBottom: 2 , paddingInlineEnd: 5}}>
+          <IconButton onClick={handleOpenModal} color="primary" sx={{ marginBottom: 2 , marginRight: 5}}>
             <EditIcon />
           </IconButton>
         </Tooltip></Typography>
