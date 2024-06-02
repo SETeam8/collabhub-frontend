@@ -7,18 +7,19 @@ import interactionPlugin from '@fullcalendar/interaction';
 import NewEventModal from './NewEventModal';
 import NewScheduleModal from './NewScheduleModal';
 import './SchedulerPage.css';
-import { Button } from "@mui/material"
+import { Button, Typography } from "@mui/material"
+import { team_members } from '@/common_mockups/team_members';
 
 interface Event {
   title: string;
   date: string;
   type: string;
-  responsible: string;
+  participants: number[];
 }
 
 interface Schedule {
   title: string;
-  participants: string;
+  participants: number[];
   date: string;
   time: string;
   place: string;
@@ -77,7 +78,13 @@ const SchedulerPage: React.FC = () => {
                   <li key={index}>
                     <strong>Name:</strong> {event.title} <br />
                     <strong>Type:</strong> {event.type} <br />
-                    <strong>Responsible:</strong> {event.responsible}
+                    <strong>Responsible:</strong> 
+                        <Typography>
+                            {event.participants.map((memberId, index) => {
+                                const member = team_members.find(m => m.id === memberId.toString());
+                                return member ? member.name : `Unknown (ID: ${memberId})`;
+                            }).join(', ')}
+                        </Typography>
                   </li>
                 ))}
               </ul>
