@@ -4,6 +4,8 @@ import React from 'react';
 import { Box, Typography, Paper, List, ListItem, ListItemText, Divider, Button, IconButton } from '@mui/material';
 import { Chat, ExitToApp, Home, People, Person } from '@mui/icons-material';
 import styled from '@emotion/styled';
+import StyledContainer from '@/components/StyledContainer';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const Container = styled(Box)({
   padding: '16px',
@@ -14,29 +16,32 @@ const Container = styled(Box)({
 
 const Section = styled(Paper)({
   marginBottom: '16px',
-  padding: '16px'
+  padding: '16px',
+  width: '100%'
 });
 
 
 const Team = () => {
   return (
-    <Container>
+    <StyledContainer>
       <Section>
         <Box display="flex" justifyContent="flex-end" marginBottom="16px">
-          <Button variant="outlined">Team Management</Button>
+          <IconButton sx={{width: '30px', height: '30px'}}><SettingsIcon/></IconButton>
         </Box>
-        <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
-          <Typography variant="subtitle1" gutterBottom color="textSecondary">
+        <Box display="flex" justifyContent="left" alignItems="top" marginBottom="8px">
+          <Typography variant="subtitle1" gutterBottom color="textSecondary" width={'35%'}>
             Subject
           </Typography>
-          <Typography variant="body1">Introduction to Software Engineering</Typography>
+          <Typography variant="body1" width={'60%'}>Introduction to Software Engineering</Typography>
         </Box>
 
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="subtitle1" gutterBottom color="textSecondary">
+        <Box display="flex" justifyContent="left" alignItems="top">
+          <Typography variant="subtitle1" gutterBottom color="textSecondary" width={'35%'}>
             Description
           </Typography>
-          <Typography variant="body2">This part is description of the team.</Typography>
+          <Typography variant="body2" width={'60%'}>
+            Conducting a project to develop an app that can assist with school life throughout the semester.
+          </Typography>
         </Box>
       </Section>
 
@@ -130,15 +135,15 @@ const Team = () => {
       </Section>
       <Section>
         <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
-          <Typography variant="h6">Team Management</Typography>
+          <Typography variant="h6">Member Feedback</Typography>
 
         </Box>
         <Box display="flex" justifyContent="flex-end" marginTop="8px">
-          <Button variant="contained" color="primary">Go to Team Management</Button>
+          <Button variant="contained" color="primary" fullWidth>Go to Member Feedback page</Button>
         </Box>
       </Section>
 
-    </Container>
+    </StyledContainer>
   );
 };
 
