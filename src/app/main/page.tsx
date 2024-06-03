@@ -44,7 +44,7 @@ const Main = () => {
         <Paper elevation={3} sx={{ p: 2 }}>
           <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="8px">
             <Typography variant="h5">Your Teams</Typography>
-            <IconButton color="primary" onClick={() => {router.push('/teams')}}>
+            <IconButton color="primary" onClick={() => {router.push('/myteams')}}>
               <ExitToApp />
             </IconButton>
           </Box>
