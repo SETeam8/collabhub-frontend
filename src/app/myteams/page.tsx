@@ -18,7 +18,7 @@ const Teams = () => {
 
   const goToTeam = (team: any) => {
     // Go to team page
-    router.push(`/team/${team}`);
+    router.push(`/team/1`);
   };
 
   return (
